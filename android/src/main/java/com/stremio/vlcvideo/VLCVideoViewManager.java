@@ -181,22 +181,4 @@ final class VLCVideoViewManager extends SimpleViewManager<VLCVideoView> {
         videoView.loadMedia(sourceUrl, startTime, autoplay, hwDecoderEnabled, title);
     }
 
-    @ReactProp(name = VLCVideoProps.KEY_CONTROL_ENABLED_PROP, defaultBoolean = VLCVideoProps.KEY_CONTROL_ENABLED_DEFAULT_VALUE)
-    public void setKeyControlEnabled(final VLCVideoView videoView, final boolean keyControlEnabled) {
-        if (keyControlEnabled && mOnKeyListener != null) {
-            videoView.setOnKeyListener(mOnKeyListener);
-            videoView.setFocusable(true);
-            videoView.requestFocus();
-        } else {
-            videoView.setOnKeyListener(null);
-            videoView.setFocusable(false);
-            videoView.clearFocus();
-        }
-    }
-
-    @ReactProp(name = VLCVideoProps.PLAY_IN_BACKGROUND_PROP, defaultBoolean = VLCVideoProps.PLAY_IN_BACKGROUND_DEFAULT_VALUE)
-    public void setPlayInBackground(final VLCVideoView videoView, final boolean playInBackground) {
-        videoView.setPlayInBackground(playInBackground);
-    }
-
 }
