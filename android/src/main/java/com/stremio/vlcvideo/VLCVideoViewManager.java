@@ -1,5 +1,6 @@
 package com.stremio.vlcvideo;
 
+import android.util.Log;
 import android.view.View;
 
 import com.facebook.react.bridge.ReadableArray;
@@ -111,12 +112,16 @@ final class VLCVideoViewManager extends SimpleViewManager<VLCVideoView> {
                 }
                 break;
             case VLCVideoProps.SET_SUBTITLE_TRACK_COMMAND_ID:
-                if (args != null &&
-                        args.size() > 0 &&
-                        !args.isNull(0) &&
-                        args.getType(0) == ReadableType.Number) {
-                    final int id = args.getInt(0);
-                    videoView.setSubtitleTrack(id);
+
+
+                if (args != null && args.size() > 0 && !args.isNull(0)) {
+                    if(args.getType(0) == ReadableType.Number) {
+                        final int id = args.getInt(0);
+                        videoView.setSubtitleTrack(id);
+                    } else if (args.getType(0) == ReadableType.String) {
+                        final String url = args.getString(0);
+                        videoView.setSubtitleTrack(url);
+                    }
                 }
                 break;
             case VLCVideoProps.SET_AUDIO_TRACK_COMMAND_ID:

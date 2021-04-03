@@ -72,10 +72,6 @@ class VLCVideo extends Component {
     }
 
     setSubtitleTrack = (id) => {
-        if (typeof id !== 'number' || isNaN(id)) {
-            id = -1;
-        }
-
         UIManager.dispatchViewManagerCommand(
             this._getViewHandle(),
             UIManager.RCTVLCVideoView.Commands.setSubtitleTrack,

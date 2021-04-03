@@ -17,7 +17,7 @@ import java.util.List;
 
 public final class VLCVideoPackage implements ReactPackage {
 
-    private static final ArrayList<String> DEFAULT_VLC_OPTIONS = new ArrayList<>(Arrays.asList("-vvv", "--http-reconnect"));
+    private static final ArrayList<String> VLC_OPTIONS = new ArrayList<>(Arrays.asList("--no-audio-time-stretch", "--avcodec-skip-frame", "--avcodec-skip-idct=2", "--stats", "--http-reconnect", "--aout=android_audiotrack", "--spdif"));
 
     private LibVLC mLibVLC;
 
@@ -32,7 +32,7 @@ public final class VLCVideoPackage implements ReactPackage {
     public List<ViewManager> createViewManagers(final ReactApplicationContext reactApplicationContext) {
 
         if(mLibVLC == null) {
-            mLibVLC = new LibVLC(reactApplicationContext, DEFAULT_VLC_OPTIONS);
+            mLibVLC = new LibVLC(reactApplicationContext, VLC_OPTIONS);
         }
 
         return Arrays.<ViewManager>asList(new VLCVideoViewManager(null, mLibVLC, null));

@@ -319,6 +319,13 @@ public final class VLCVideoView extends SurfaceView {
         }
     }
 
+    public void setSubtitleTrack(final String url) {
+        if (!mMediaPlayer.isReleased()) {
+            mMediaPlayer.addSlave(Media.Slave.Type.Subtitle, Uri.parse(url), true);
+            mEventEmitter.emitOnSelectedSubtitleTrackIdChanged(mMediaPlayer.getSpuTrack());
+        }
+    }
+
     public void setAudioTrack(final int id) {
         if (!mMediaPlayer.isReleased()) {
             mMediaPlayer.setAudioTrack(id);
